@@ -1,11 +1,11 @@
 {
   "name": "reactboilerplateapp",
   "version": "1.0.0",
-  "description": "Simple react app",
+  "description": "react boilerplate app",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --watch",
-    "test":  "karma start",
+    "test": "karma start",
     "start": "node server.js"
   },
   "author": "Tichaona Hwandaza",
