@@ -6,6 +6,7 @@ const SERVER_PORT = process.env.PORT || 3000;
 
 app.use((request, response, next) => {
 
+    //redirect to allow https to run on non-https
     if (request.headers['x-forwarded-proto'] === 'https') {
         response.redirect('http://' + request.hostname + request.url);
     } else {
