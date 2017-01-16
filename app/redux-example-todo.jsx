@@ -25,6 +25,7 @@ var reducer = (state = stateDefault, action) => {
     }
 }
 
+//create store and load developer tools if they exist
 var store = redux.createStore(reducer, redux.compose(
     window.devToolsExtension ? window.devToolsExtension() : (f) => {
             return f
@@ -52,4 +53,10 @@ store.dispatch({
 store.dispatch({
     type: 'CHANGE_SEARCH_TEXT',
     searchText: 'love'
+});
+
+
+store.dispatch({
+    type: 'CHANGE_SEARCH_TEXT',
+    searchText: 'Exmaple'
 });
