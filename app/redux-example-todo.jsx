@@ -9,11 +9,7 @@ const stateDefault = {
 };
 
 //has to be a pure function
-var reducer = (state = stateDefault
-    , action) => {
-
-    console.log('New action :', action);
-
+var reducer = (state = stateDefault, action) => {
     switch (action.type) {
 
         //use the spread operator to preserve the old state
@@ -29,14 +25,31 @@ var reducer = (state = stateDefault
     }
 }
 
-var store = redux.createStore(reducer);
+var store = redux.createStore(reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : (f) => {
+            return f
+        }
+));
 
-console.log('currentState', store.getState());
+//subscribe to changes
+var unsubscribe = store.subscribe(() => {
+
+    console.log('currentState', store.getState());
+    var state = store.getState();
+    console.log('subscribe searchText', state.searchText);
+    document.getElementById('app').innerHTML = state.searchText;
+
+});
+
+//unsubscribe();
 
 store.dispatch({
     type: 'CHANGE_SEARCH_TEXT',
     searchText: '401k'
 });
 
-console.log('currentState', store.getState());
 
+store.dispatch({
+    type: 'CHANGE_SEARCH_TEXT',
+    searchText: 'love'
+});
